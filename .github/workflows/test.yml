@@ -6,10 +6,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install
+      - name: Dependensiyalarni o'rnatish
         run: npm ci
-      - name: Lint
+      - name: Linterni ishga tushirish
         run: npm run lint
+
   test:
     needs: [lint]
     strategy:
@@ -19,12 +20,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Node versiyasini sozlash
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install
+      - name: Dependensiyalarni o'rnatish
         run: npm ci
-      - name: Test
+      - name: Testlarni ishga tushirish
         env:
-          PORT: ${{ secrets.PORT}}
+          PORT: ${{ secrets.PORT }}
         run: npm run test
