@@ -1,4 +1,4 @@
-name : Test
+name: Test
 on: Push
 jobs:
   lint:
@@ -18,5 +18,6 @@ jobs:
       - name: Install
         run: npm ci
       - name: TEST
+        env:
+          PORT: ${{secrets.port}}
         run: npm run test
-          
